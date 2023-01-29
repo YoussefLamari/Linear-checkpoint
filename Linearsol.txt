@@ -1,0 +1,77 @@
+Solution 1 - Using arrays:
+
+bash
+Copy code
+function sumOfDistinctElements(set1, set2) {
+  let sum = 0;
+  let set = set1.concat(set2);
+  let uniqueSet = [...new Set(set)];
+  for (let i = 0; i < uniqueSet.length; i++) {
+    sum += uniqueSet[i];
+  }
+  return sum;
+}
+Solution 2 - Using a hash table:
+
+scss
+Copy code
+function sumOfDistinctElements(set1, set2) {
+  let sum = 0;
+  let map = {};
+  for (let i = 0; i < set1.length; i++) {
+    if (!map[set1[i]]) {
+      map[set1[i]] = 1;
+    } else {
+      map[set1[i]]++;
+    }
+  }
+  for (let i = 0; i < set2.length; i++) {
+    if (!map[set2[i]]) {
+      map[set2[i]] = 1;
+    } else {
+      map[set2[i]]++;
+    }
+  }
+  for (let key in map) {
+    if (map[key] === 1) {
+      sum += parseInt(key);
+    }
+  }
+  return sum;
+}
+
+find the sum of overlapping elements in two sets:
+
+Solution 1 - Using arrays:
+
+bash
+Copy code
+function sumOfOverlappingElements(set1, set2) {
+  let sum = 0;
+  for (let i = 0; i < set1.length; i++) {
+    for (let j = 0; j < set2.length; j++) {
+      if (set1[i] === set2[j]) {
+        sum += set1[i];
+        break;
+      }
+    }
+  }
+  return sum;
+}
+Solution 2 - Using a hash table:
+
+bash
+Copy code
+function sumOfOverlappingElements(set1, set2) {
+  let sum = 0;
+  let map = {};
+  for (let i = 0; i < set1.length; i++) {
+    map[set1[i]] = 1;
+  }
+  for (let i = 0; i < set2.length; i++) {
+    if (map[set2[i]]) {
+      sum += set2[i];
+    }
+  }
+  return sum;
+}
